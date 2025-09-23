@@ -19,12 +19,12 @@ class algorithm
 {
     public:
         void RunALG(int, int, int, double, int,int, int);
-        double get_best_fitness() const;
+        double get_best_fitness(int& best_idx) const;
         vector<double> get_best_position() const;
     private:
         vector<Particle> population;
         void Init(Particle &particle,int,int,int , mt19937& gen);
-        int Select_p_best(vector<Particle> &population  , double , int );
+        int Select_p_best(vector<Particle> &population  , double , int , mt19937& gen);
         void Mutation(Particle &particle, const Particle &p_best, const vector<Particle> &population, int, int);
         void Crossover(Particle &particle, const Particle &mutant, int);
         double Evaluation(Particle &particle , int);
