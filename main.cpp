@@ -7,7 +7,7 @@ using namespace std;
 int main(int argc, char *argv[]) {
 
     int D = 10; // 維度
-    int NP = 20; // 種群大小
+    int NP = 100; // 種群大小
     int G = 500; // 迭代次數
     double pb = 0.05; //取前幾%的個體
     double c = 0.1; //自適應參數
@@ -24,7 +24,15 @@ int main(int argc, char *argv[]) {
     
     algorithm alg;
     alg.RunALG(D, NP, G, pb, c, maxVal , func_num);
-    cout << "Best fitness: " << alg.get_best_fitness() <<" position: "<< endl;
+    int idx;
+    cout << "Best fitness: " << alg.get_best_fitness(idx) << endl;
+    cout << "Position: ";
+    vector<double> best_pos = alg.get_best_position();
+    for (double val : best_pos) {
+        cout << val << " ";
+    }
+    cout << endl;
+
 
     system("pause");
     return 0;
