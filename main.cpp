@@ -21,17 +21,24 @@ int main(int argc, char *argv[]) {
     
     cout << "Initializing parameters:\n";
     cout << "D: " << D << ", NP: " << NP << ", G: " << G << ", p: " << pb << ", c: " << c << "\n";
-    
-    algorithm alg;
-    alg.RunALG(D, NP, G, pb, c, maxVal , func_num);
-    int idx;
-    cout << "Best fitness: " << alg.get_best_fitness(idx) << endl;
-    cout << "Position: ";
-    vector<double> best_pos = alg.get_best_position();
-    for (double val : best_pos) {
-        cout << val << " ";
+    string function_names[] = {"ackley", "sphere_func", "rastrigin", "rosenbrock", "griewank"};
+
+    for (int  i = 0; i < sizeof(function_names) / sizeof(function_names[0]); i++)
+    {
+        algorithm alg;
+        alg.RunALG(D, NP, G, pb, c, maxVal , i + 1);
+        int idx;
+        cout << "function: " << function_names[i] << endl;  
+        cout << "Best fitness: " << alg.get_best_fitness(idx) << endl;
+        cout << "Position: ";
+        vector<double> best_pos = alg.get_best_position();
+        for (double val : best_pos) {
+            cout << val << " ";
+        }
+        cout << endl;
     }
-    cout << endl;
+    
+
 
 
     system("pause");

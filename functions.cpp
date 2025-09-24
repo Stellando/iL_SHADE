@@ -27,7 +27,39 @@ double ackley(const vector<double>& x) {
     }
     return -a * exp(-b * sqrt(sum1 / D)) - exp(sum2 / D) + a + exp(1.0);
 }
-
+double sphere_func (const vector<double>& x) /* Sphere */
+{
+    double sum = 0.0;
+    for (double val : x) {
+        sum += val * val;
+    }
+    return sum;
+}
+double rastrigin(const vector<double>& x) {
+    double sum = 0.0;
+    for (double val : x) {
+        sum += val * val - 10.0 * cos(2 * M_PI * val) + 10.0;
+    }
+    return sum;
+}
+double rosenbrock(const vector<double>& x) {
+    double sum = 0.0;
+    int D = x.size();
+    for (int i = 0; i < D - 1; ++i) {
+        double term1 = 100 * pow((x[i + 1] - x[i] * x[i]), 2);
+        double term2 = pow((x[i] - 1), 2);
+        sum += term1 + term2;
+    }
+    return sum;
+}
+double griewank(const vector<double>& x) {
+    double sum = 0.0, product = 1.0;
+    for (size_t i = 0; i < x.size(); ++i) {
+        sum += (x[i] * x[i]) / 4000.0;
+        product *= cos(x[i] / sqrt(i + 1));
+    }
+    return sum - product + 1.0;
+}
 vector<double> generateRandomIndividual(int D, double min, double max, mt19937& gen) {
     vector<double> individual(D);
     uniform_real_distribution<> dis(min, max);

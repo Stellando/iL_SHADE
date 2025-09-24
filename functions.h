@@ -3,6 +3,10 @@
 
 void cec14_test_func(double *x, double *f, int nx, int mx, int func_num);
 double ackley(const std::vector<double>& x);
+double sphere_func (const std::vector<double>& x);
+double rastrigin(const std::vector<double>& x);
+double rosenbrock(const std::vector<double>& x);
+double griewank(const std::vector<double>& x);
 std::vector<double> generateRandomIndividual(int D, double min, double max, std::mt19937& gen);
 // functions.h
 double cec14_wrapper(const std::vector<double>& x, int func_num);

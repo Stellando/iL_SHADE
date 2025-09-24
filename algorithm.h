@@ -27,7 +27,7 @@ class algorithm
         int Select_p_best(vector<Particle> &population  , double , int , mt19937& gen);
         void Mutation(Particle &particle, const Particle &p_best, const vector<Particle> &population, int, int);
         void Crossover(Particle &particle, const Particle &mutant, int);
-        double Evaluation(Particle &particle , int);
+        double Evaluation(Particle &particle , int fun_num);
         //double evaluate_fitness(const Particle &particle);
 };
 

@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void algorithm::RunALG(int D, int NP, int G, double pb, int c, int maxVal, int func_num) {
+void algorithm::RunALG(int D, int NP, int G, double pb, int c, int maxVal, int fun_num) {
     
     // Initialize parameters
     int minVal = -maxVal;
@@ -36,7 +36,7 @@ void algorithm::RunALG(int D, int NP, int G, double pb, int c, int maxVal, int f
     population.resize(current_NP);
     for (int i = 0; i < current_NP; ++i) {
         Init(population[i], D, minVal, maxVal, gen);
-        population[i].fitness = Evaluation(population[i], func_num);
+        population[i].fitness = Evaluation(population[i], fun_num);
         NFE++;
         cout << "Particle " << i << " fitness: " << population[i].fitness << endl;
         cout << "Position: ";
@@ -132,7 +132,7 @@ void algorithm::RunALG(int D, int NP, int G, double pb, int c, int maxVal, int f
                 }
                 F_delta[j] = fabs(population[i].fitness - v[i].fitness);
             }
-            v[i].fitness = Evaluation(v[i], func_num);
+            v[i].fitness = Evaluation(v[i], fun_num);
             NFE++;
         }
 
@@ -191,11 +191,24 @@ void algorithm::RunALG(int D, int NP, int G, double pb, int c, int maxVal, int f
     }
 }
 
-double algorithm::Evaluation(Particle &particle, int func_num) {
+double algorithm::Evaluation(Particle &particle, int fun_num) {
     //double fitness = cec14_wrapper(particle.position, func_num);
-    double fitness= ackley(particle.position);
+    /** */
+    if(fun_num==1)
+        return ackley(particle.position);
+    else if(fun_num==2)
+        return sphere_func(particle.position);
+    else if(fun_num==3)
+        return rastrigin(particle.position);
+    else if(fun_num==4)
+        return rosenbrock(particle.position);
+    else if(fun_num==5)
+        return griewank(particle.position);
+    else
+        return ackley(particle.position);
+    
     //cout << "Evaluation " << fitness << endl;
-    return fitness;
+    //return fitness;
 }
 
 double algorithm::get_best_fitness(int& best_idx) const {
